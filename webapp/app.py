@@ -28,25 +28,6 @@ db_conn = connections.Connection(
 output = {}
 table = 'employee';
 
-# Define the supported color codes
-color_codes = {
-    "red": "#e74c3c",
-    "green": "#16a085",
-    "blue": "#89CFF0",
-    "blue2": "#30336b",
-    "pink": "#f4c2c2",
-    "darkblue": "#130f40",
-    "lime": "#C1FF9C",
-}
-
-
-# Create a string of supported colors
-SUPPORTED_COLORS = ",".join(color_codes.keys())
-
-# Generate a random color
-COLOR = random.choice(["red", "green", "blue", "blue2", "darkblue", "pink", "lime"])
-
-
 @app.route("/", methods=['GET', 'POST'])
 def home():
     return render_template('addemp.html', color=color_codes[COLOR])
@@ -57,27 +38,17 @@ def about():
     
 @app.route("/addemp", methods=['POST'])
 def AddEmp():
-    emp_id = request.form['emp_id']
-    first_name = request.form['first_name']
-    last_name = request.form['last_name']
-    primary_skill = request.form['primary_skill']
-    location = request.form['location']
-
-  
-    insert_sql = "INSERT INTO employee VALUES (%s, %s, %s, %s, %s)"
-    cursor = db_conn.cursor()
-
+   db_connect_result = False
+    err_message = ""
     try:
-        
-        cursor.execute(insert_sql,(emp_id, first_name, last_name, primary_skill, location))
-        db_conn.commit()
-        emp_name = "" + first_name + " " + last_name
+        mysql.connector.connect(host=DB_Host, database=DB_Database, user=DB_User, password=DB_Password)
+        color = '#39b54b'
+        db_connect_result = True
+    except Exception as e:
+        color = '#ff3f3f'
+        err_message = str(e)
 
-    finally:
-        cursor.close()
-
-    print("all modification done...")
-    return render_template('addempoutput.html', name=emp_name, color=color_codes[COLOR])
+    return render_template('addemp.html', debug="Environment Variables: DB_Host=" + (os.environ.get('DB_Host') or "Not Set") + "; DB_Database=" + (os.environ.get('DB_Database')  or "Not Set") + "; DB_User=" + (os.environ.get('DB_User')  or "Not Set") + "; DB_Password=" + (os.environ.get('DB_Password')  or "Not Set") + "; " + err_message, db_connect_result=db_connect_result, name=socket.gethostname(), color=color, GROUP=GROUP, IMAGE_URL_PATH=IMAGE_URL_PATH, IMAGE_URL_S3=IMAGE_URL_S3)
 
 @app.route("/getemp", methods=['GET', 'POST'])
 def GetEmp():
