@@ -17,16 +17,7 @@ IMAGE_URL_PATH = os.environ.get('IMAGE_URL_PATH')
 IMAGE_URL_S3 = os.environ.get('IMAGE_URL_S3')
 
 # Create a connection to the MySQL database
-db_conn = connections.Connection(
-    host= DBHOST,
-    port=DBPORT,
-    user= DBUSER,
-    password= DBPWD, 
-    db= DATABASE
-    
-)
-output = {}
-table = 'employee';
+
     
 @app.route("/", methods=['GET','POST'])
 def main():
