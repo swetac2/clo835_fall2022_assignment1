@@ -30,8 +30,7 @@ table = 'employee';
     
 @app.route("/", methods=['GET','POST'])
 def main():
-    
-return render_template("addemp.html")
+    return render_template("addemp.html")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=81)
