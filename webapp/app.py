@@ -38,9 +38,6 @@ def AddEmp():
         
   
 
-    finally:
-        cursor.close()
-
     return render_template("addemp.html", id=output["emp_id"], fname=output["first_name"],
                            lname=output["last_name"], interest=output["primary_skills"], location=output["location"], color=color_codes[COLOR])
 
