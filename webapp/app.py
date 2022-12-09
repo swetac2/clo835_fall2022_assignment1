@@ -28,18 +28,10 @@ db_conn = connections.Connection(
 output = {}
 table = 'employee';
     
-@app.route("/addemp", methods=['POST'])
-def AddEmp():
-    emp_id = request.form['emp_id']
-    first_name = request.form['first_name']
-    last_name = request.form['last_name']
-    primary_skill = request.form['primary_skill']
-    location = request.form['location']
-        
-  
-
-    return render_template("addemp.html", id=output["emp_id"], fname=output["first_name"],
-                           lname=output["last_name"], interest=output["primary_skills"], location=output["location"], color=color_codes[COLOR])
+@app.route("/", methods=['GET','POST'])
+def main():
+    
+return render_template("addemp.html")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=81)
