@@ -21,7 +21,6 @@ IMAGE_URL_S3 = os.environ.get('IMAGE_URL_S3')
     
 @app.route("/", methods=['GET','POST'])
 def main():
-    return render_template("addemp.html")
-
+   return render_template('addemp.html', color=color_codes[COLOR])
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=81)
