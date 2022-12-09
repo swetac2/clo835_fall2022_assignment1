@@ -13,6 +13,8 @@ DBPWD = os.environ.get("DBPWD") or "password"
 DATABASE = os.environ.get("DATABASE") or "employees"
 COLOR_FROM_ENV = os.environ.get('APP_COLOR') or "lime"
 DBPORT = int(os.environ.get("DBPORT"))
+IMAGE_URL_PATH = os.environ.get('IMAGE_URL_PATH')
+IMAGE_URL_S3 = os.environ.get('IMAGE_URL_S3')
 
 # Create a connection to the MySQL database
 db_conn = connections.Connection(
