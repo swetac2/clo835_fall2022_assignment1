@@ -36,8 +36,7 @@ def AddEmp():
     primary_skill = request.form['primary_skill']
     location = request.form['location']
         
-    except Exception as e:
-        print(e)
+  
 
     finally:
         cursor.close()
