@@ -13,7 +13,7 @@ DBUSER = os.environ.get("DBUSER") or "root"
 DBPWD = os.environ.get("DBPWD") or "password"
 DATABASE = os.environ.get("DATABASE") or "employees"
 COLOR_FROM_ENV = os.environ.get('APP_COLOR') or "lime"
-DBPORT = int(os.environ.get("DBPORT"))
+#DBPORT = int(os.environ.get("DBPORT"))
 My_name = os.environ.get('MYNAME')
 image_url=os.environ.get('image_url')
 #if os.path.exists('/clo835/config/image_url'):
