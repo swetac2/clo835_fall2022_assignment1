@@ -17,6 +17,30 @@ IMAGE_URL_PATH = os.environ.get('IMAGE_URL_PATH')
 IMAGE_URL_S3 = os.environ.get('IMAGE_URL_S3')
 
 # Create a connection to the MySQL database
+db_conn = connections.Connection(
+    host= DBHOST,
+    port=DBPORT,
+    user= DBUSER,
+    password= DBPWD, 
+    db= DATABASE
+    
+)
+output = {}
+table = 'employee';
+
+# Define the supported color codes
+color_codes = {
+    "red": "#e74c3c",
+    "green": "#16a085",
+    "blue": "#89CFF0",
+    "blue2": "#30336b",
+    "pink": "#f4c2c2",
+    "darkblue": "#130f40",
+    "lime": "#C1FF9C",
+}
+
+# Generate a random color
+COLOR = random.choice(["red", "green", "blue", "blue2", "darkblue", "pink", "lime"])
 
     
 @app.route("/", methods=['GET','POST'])
