@@ -3,18 +3,22 @@ from pymysql import connections
 import os
 import random
 import argparse
+import socket
 
 
 app = Flask(__name__)
-
+image_url = " "
 DBHOST = os.environ.get("DBHOST") or "localhost"
 DBUSER = os.environ.get("DBUSER") or "root"
 DBPWD = os.environ.get("DBPWD") or "password"
 DATABASE = os.environ.get("DATABASE") or "employees"
 COLOR_FROM_ENV = os.environ.get('APP_COLOR') or "lime"
 DBPORT = int(os.environ.get("DBPORT"))
-IMAGE_URL_PATH = os.environ.get('IMAGE_URL_PATH')
-IMAGE_URL_S3 = os.environ.get('IMAGE_URL_S3')
+My_name = os.environ.get('MYNAME')
+if os.path.exists('/clo835/config/image_url'):
+ My_file = open("/clo835/config/image_url", "r")
+ image_url = My_file.read()
+ print("Background image url is ",image_url)
 
 # Create a connection to the MySQL database
 db_conn = connections.Connection(
